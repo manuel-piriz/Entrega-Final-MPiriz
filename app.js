@@ -1,35 +1,50 @@
+import { peliculas } from './peliculas.js';
+
 const SI = 'si';
 const NO = 'no';
 
 let nombre;
-let nombrepelicula;
-let precioentrada=250;
+let precioEntrada = 250;
 let cantidad;
-let total=0;
-let fila;
+let total = 0;
 let continuar;
 let email;
-let ticket = 'Pelicula   Precio   Cant.   Subtotal \n';
+let ticket = '';
 
-nombre = prompt('Bienvenido a Cine del Este!\n Ingrese su nombre: ');
-do{
-    nombrepelicula = prompt('Ingrese la película que desea ver: ');
-    cantidad = +prompt('Cantidad de entradas: ');
+nombre = prompt('Bienvenido a Cine del Este!\n\nIngrese su nombre: ');
 
-    fila = `${nombrepelicula}   $${precioentrada}  ${cantidad}  $${cantidad*precioentrada} \n`;
-    ticket = ticket + fila;
-    total = total+ precioentrada * cantidad;
+do {
+    const opcionesPeliculas = peliculas.map(pelicula => pelicula.titulo).join('\n');
 
-    continuar = prompt('Desea comprar entradas para otra película? si/no') .toLowerCase();
-}while (continuar === SI);
+    const PeliculaUsuario = prompt(`Ingrese el título de la película que desea ver ${nombre}:\n\n${opcionesPeliculas}\n`);
+    const tituloflexy = PeliculaUsuario.toLowerCase();
 
-ticket = ticket + `Total: $${total}`;
+    const peliculaElegida = peliculas.find((pelicula) => {
+        const tituloPelicula = pelicula.titulo.toLowerCase();
+        return tituloPelicula.includes(tituloflexy);
+    });
+
+    if (peliculaElegida && peliculas.includes(peliculaElegida)) {
+        cantidad = +prompt('Cantidad de entradas: \n');
+
+        const fila = `Pelicula: ${peliculaElegida.titulo}\nEntrada: $${precioEntrada}\nCantidad: ${cantidad}\nSubtotal: $${cantidad * precioEntrada}\n\n`;
+        ticket += fila;
+        total += precioEntrada * cantidad;
+
+        continuar = prompt('Desea comprar entradas para otra película? si/no\n').toLowerCase();
+    } else {
+        alert('Título de película inválido. Por favor, elija un título de película válido.\n');
+        continuar = SI;
+    }
+} while (continuar === SI);
+
+ticket += `Total: $${total}`;
 alert(ticket);
 
-email = prompt('Desea recibir nuestra cartelera via email? si/no');
-if(email === SI){
-    prompt('Ingrese su correo electrónico: ');
-    alert('Recibirá nuestra cartelera mensual\n Gracias por elegirnos, disfrute la película!');
-}else{
+email = prompt('Desea recibir nuestra cartelera via email? si/no\n');
+if (email === SI) {
+    prompt('Ingrese su correo electrónico: \n');
+    alert('Recibirá nuestra cartelera mensual\n\nGracias por elegirnos, disfrute la película!');
+} else {
     alert('Gracias por elegirnos, disfrute la película!');
 }
