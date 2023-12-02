@@ -44,7 +44,7 @@ alert(ticket);
 email = prompt('Desea recibir nuestra cartelera via email? si/no\n');
 if (email === SI) {
     prompt('Ingrese su correo electrónico: \n');
-    alert('Recibirá nuestra cartelera mensual\n\nGracias por elegirnos, disfrute la película!');
+    alert(`Recibirá nuestra cartelera mensual.\n\nGracias por elegirnos ${nombre}, disfrute la película!`);
 } else {
-    alert('Gracias por elegirnos, disfrute la película!');
+    alert(`Gracias por elegirnos ${nombre}, disfrute la película!`);
 }
