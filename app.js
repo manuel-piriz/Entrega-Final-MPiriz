@@ -3,48 +3,90 @@ import { peliculas } from './peliculas.js';
 const SI = 'si';
 const NO = 'no';
 
-let nombre;
-let precioEntrada = 250;
-let cantidad;
+let carrito = [];
 let total = 0;
-let continuar;
-let email;
-let ticket = '';
 
-nombre = prompt('Bienvenido a Cine del Este!\n\nIngrese su nombre: ');
+const carritoItems = document.getElementById('carritoItems');
+const totalCarrito = document.getElementById('totalCarrito');
+const botonComprar = document.getElementById('botonComprar');
 
-do {
-    const opcionesPeliculas = peliculas.map(pelicula => pelicula.titulo).join('\n');
+// mostrar el carrito
+function mostrarCarrito() {
+    carritoItems.innerHTML = '';
 
-    const PeliculaUsuario = prompt(`Ingrese el título de la película que desea ver ${nombre}:\n\n${opcionesPeliculas}\n`);
-    const tituloflexy = PeliculaUsuario.toLowerCase();
-
-    const peliculaElegida = peliculas.find((pelicula) => {
-        const tituloPelicula = pelicula.titulo.toLowerCase();
-        return tituloPelicula.includes(tituloflexy);
+    carrito.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.titulo} - $${item.precio} x ${item.cantidad}`;
+        carritoItems.appendChild(listItem);
     });
 
-    if (peliculaElegida && peliculas.includes(peliculaElegida)) {
-        cantidad = +prompt('Cantidad de entradas: \n');
-
-        const fila = `Pelicula: ${peliculaElegida.titulo}\nEntrada: $${precioEntrada}\nCantidad: ${cantidad}\nSubtotal: $${cantidad * precioEntrada}\n\n`;
-        ticket += fila;
-        total += precioEntrada * cantidad;
-
-        continuar = prompt('Desea comprar entradas para otra película? si/no\n').toLowerCase();
-    } else {
-        alert('Título de película inválido. Por favor, elija un título de película válido.\n');
-        continuar = SI;
-    }
-} while (continuar === SI);
-
-ticket += `Total: $${total}`;
-alert(ticket);
-
-email = prompt('Desea recibir nuestra cartelera via email? si/no\n');
-if (email === SI) {
-    prompt('Ingrese su correo electrónico: \n');
-    alert(`Recibirá nuestra cartelera mensual.\n\nGracias por elegirnos ${nombre}, disfrute la película!`);
-} else {
-    alert(`Gracias por elegirnos ${nombre}, disfrute la película!`);
+    totalCarrito.textContent = total;
 }
+
+// agregar una pelicula al carrito
+function agregarAlCarrito(pelicula, cantidad) {
+    const itemExistente = carrito.find(item => item.id === pelicula.id); // para ver si la pelicula ya esta en el carrito
+
+    if (itemExistente) {
+        itemExistente.cantidad += cantidad; // si esta le suma 1
+    } else {
+        carrito.push({ // sino agrega la nueva pelicula
+            id: pelicula.id,
+            titulo: pelicula.titulo,
+            precio: pelicula.precio,
+            cantidad: cantidad,
+        });
+    }
+
+    total += pelicula.precio * cantidad;
+
+    console.log("Carrito después de agregar:", carrito);
+    console.log("Total después de agregar:", total);
+
+    // actualizar el carrito
+    mostrarCarrito();
+}
+
+// confirmar la compra
+function confirmarCompra() {
+    
+    const mostrarTicket = carrito.map(item => `${item.titulo} - $${item.precio} x ${item.cantidad}`).join('\n');
+    const totalTicket = `Total: $${total}`;
+    const ticket = `${mostrarTicket}\n${totalTicket}`;
+
+    // mostrar el ticket
+    alert(`Compra realizada. Gracias por elegirnos.\n\nDetalle de la compra:\n${ticket}`);
+
+    // limpiar carrito al terminar la compra
+    carrito = [];
+    total = 0;
+    mostrarCarrito();
+}
+
+botonComprar.addEventListener('click', confirmarCompra);
+
+// mostrar peliculas disponibles
+const mostrarPeliculas = document.getElementById('mostrarPeliculas');
+
+peliculas.forEach(pelicula => {
+    const peliculaElement = document.createElement('div');
+    peliculaElement.innerHTML = `
+        <h3>${pelicula.titulo}</h3>
+        <img src="${pelicula.imagen}" alt="${pelicula.titulo}">
+        <p>Director: ${pelicula.director}</p>
+        <p>Género: ${pelicula.genero}</p>
+        <p>Año de Estreno: ${pelicula.añoEstreno}</p>
+        <p>Precio: $${pelicula.precio}</p>
+        <label>Cantidad: <input type="number" id="cantidad-${pelicula.id}"></label>
+        <button class="agregarAlCarritoBtn" data-id="${pelicula.id}">Agregar al Carrito</button>`;
+
+    // evento para agregar al carrito
+    const agregarAlCarritoBtn = peliculaElement.querySelector('.agregarAlCarritoBtn');
+    agregarAlCarritoBtn.addEventListener('click', () => {
+        const cantidadInput = document.getElementById(`cantidad-${pelicula.id}`);
+        const cantidad = parseInt(cantidadInput.value);
+        agregarAlCarrito(pelicula, cantidad);
+    });
+
+    mostrarPeliculas.appendChild(peliculaElement);
+});

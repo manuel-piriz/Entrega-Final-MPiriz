@@ -4,5 +4,71 @@
     box-sizing: border-box; }
 
 body{
-    background-color: rgb(20, 98, 175);
+    background-color: rgb(197, 197, 197);
+}
+
+nav{
+    background-color: black;
+}
+
+h1{
+    text-align: center;
+    padding: 20px;
+    font-size: 50px;
+    color: white;
+}
+
+#carrito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.peliculas h2{
+    text-align: center;
+    padding: 15px;
+    font-size: 30px;
+    background-color: black;
+    color: white;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#mostrarPeliculas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+#mostrarPeliculas div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    width: 350px;
+}
+
+#mostrarPeliculas img {
+    max-width: 70%;
+    max-height: 100%; 
+    display: block; 
+    margin: 0 auto; 
+    padding: 10px;
+}
+
+#mostrarPeliculas div h3{
+    text-align: center;
+    padding: 10px;
+}
+
+#mostrarPeliculas button.agregarAlCarritoBtn {
+    margin-top: 10px;
 }

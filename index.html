@@ -4,9 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>pre-entrega</title>
+    <title>pre-entrega - M-Piriz</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <h1>Cine del Este</h1>
+        </nav>
+    </header>
+
+    <main>
+        <section id="carrito">
+            <h2>Carrito de Compras</h2>
+            <ul id="carritoItems"></ul>
+            <p>Total: $<span id="totalCarrito">0</span></p>
+            <button id="botonComprar">Realizar Compra</button>
+        </section>
+
+        <section class="peliculas">
+            <h2>Cartelera</h2>
+            <div id="mostrarPeliculas">
+                <!-- aca veremos las peliculas disponibles -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+
     <script type="module" src="./app.js"></script>
     <script type="module" src="./peliculas.js"></script>
 </body>
