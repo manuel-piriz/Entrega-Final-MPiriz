@@ -10,6 +10,19 @@ const carritoItems = document.getElementById('carritoItems');
 const totalCarrito = document.getElementById('totalCarrito');
 const botonComprar = document.getElementById('botonComprar');
 
+// cargar el carrito desde localStorage
+function cargarCarritoDesdeLocalStorage() {
+    const carritoLocalStorage = localStorage.getItem('carrito');
+    const totalLocalStorage = localStorage.getItem('total');
+
+    carrito = carritoLocalStorage ? JSON.parse(carritoLocalStorage) : [];
+    total = totalLocalStorage ? parseFloat(totalLocalStorage) : 0;
+
+    mostrarCarrito();
+}
+
+cargarCarritoDesdeLocalStorage();
+
 // mostrar el carrito
 function mostrarCarrito() {
     carritoItems.innerHTML = '';
@@ -40,8 +53,8 @@ function agregarAlCarrito(pelicula, cantidad) {
 
     total += pelicula.precio * cantidad;
 
-    console.log("Carrito después de agregar:", carrito);
-    console.log("Total después de agregar:", total);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem('total', total);
 
     // actualizar el carrito
     mostrarCarrito();
@@ -49,7 +62,7 @@ function agregarAlCarrito(pelicula, cantidad) {
 
 // confirmar la compra
 function confirmarCompra() {
-    
+
     const mostrarTicket = carrito.map(item => `${item.titulo} - $${item.precio} x ${item.cantidad}`).join('\n');
     const totalTicket = `Total: $${total}`;
     const ticket = `${mostrarTicket}\n${totalTicket}`;
@@ -61,6 +74,9 @@ function confirmarCompra() {
     carrito = [];
     total = 0;
     mostrarCarrito();
+
+    localStorage.removeItem('carrito');
+    localStorage.removeItem('total');
 }
 
 botonComprar.addEventListener('click', confirmarCompra);
@@ -77,7 +93,7 @@ peliculas.forEach(pelicula => {
         <p>Género: ${pelicula.genero}</p>
         <p>Año de Estreno: ${pelicula.añoEstreno}</p>
         <p>Precio: $${pelicula.precio}</p>
-        <label>Cantidad: <input type="number" id="cantidad-${pelicula.id}"></label>
+        <label>Cantidad: <input type="number" id="cantidad-${pelicula.id}" min="1" value="1"></label>
         <button class="agregarAlCarritoBtn" data-id="${pelicula.id}">Agregar al Carrito</button>`;
 
     // evento para agregar al carrito
