@@ -1,32 +1,49 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+}
 
-body{
+body {
     background-color: rgb(197, 197, 197);
 }
 
-nav{
+nav {
     background-color: black;
 }
 
-h1{
+h1 {
     text-align: center;
     padding: 20px;
     font-size: 50px;
     color: white;
 }
 
-#carrito{
+#carrito {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    height: auto;
 }
 
-.peliculas h2{
+#carritoItems {
+    list-style: none;
+    padding: 0;
+}
+
+#carritoItems li {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+}
+
+.peliculas h2 {
     text-align: center;
     padding: 15px;
     font-size: 30px;
@@ -47,7 +64,7 @@ h1{
     padding: 15px;
 }
 
-#mostrarPeliculas div{
+#mostrarPeliculas div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,17 +75,69 @@ h1{
 
 #mostrarPeliculas img {
     max-width: 70%;
-    max-height: 100%; 
-    display: block; 
-    margin: 0 auto; 
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
     padding: 10px;
 }
 
-#mostrarPeliculas div h3{
+#mostrarPeliculas div h3 {
     text-align: center;
     padding: 10px;
 }
 
 #mostrarPeliculas button.agregarAlCarritoBtn {
     margin-top: 10px;
+}
+
+#limpiarCarritoBtn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #c31829;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#limpiarCarritoBtn:hover {
+    background-color: #dd4958;
+}
+
+#botonComprar {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #2dc30f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#botonComprar:hover {
+    background-color: #4bd94b;
+}
+
+.eliminarDelCarritoBtn {
+    background-color: #c31829;
+    margin-left: 10px;
+    height: 17px;
+    border: solid 3px #c31829;
+    border-radius: 3px;
+    color: #ffffff;
+}
+
+.eliminarDelCarritoBtn:hover {
+    background-color: #dd4958;
+    border: solid 3px #dd4958;
+}
+
+.agregarAlCarritoBtn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #2dc30f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }

@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "titulo": "Toy Story",
+        "director": "John Lasseter",
+        "genero": "Animación",
+        "añoEstreno": 1995,
+        "precio": 250,
+        "imagen": "img/toy-story.webp"
+    },
+    {
+        "id": 2,
+        "titulo": "Shrek",
+        "director": "Andrew Adamson, Vicky Jenson",
+        "genero": "Animación",
+        "añoEstreno": 2001,
+        "precio": 250,
+        "imagen": "img/shrek.jpg"
+    },
+    {
+        "id": 3,
+        "titulo": "Buscando a Nemo",
+        "director": "Andrew Stanton, Lee Unkrich",
+        "genero": "Animación",
+        "añoEstreno": 2003,
+        "precio": 250,
+        "imagen": "img/buscando-a-nemo.jpg"
+    },
+    {
+        "id": 4,
+        "titulo": "Avengers: Endgame",
+        "director": "Anthony Russo, Joe Russo",
+        "genero": "Acción",
+        "añoEstreno": 2019,
+        "precio": 300,
+        "imagen": "img/avengers.webp"
+    },
+    {
+        "id": 5,
+        "titulo": "Joker",
+        "director": "Todd Phillips",
+        "genero": "Drama",
+        "añoEstreno": 2019,
+        "precio": 300,
+        "imagen": "img/joker.jpg"
+    },
+    {
+        "id": 6,
+        "titulo": "Spider-Man: No Way Home",
+        "director": "Jon Watts",
+        "genero": "Acción",
+        "añoEstreno": 2021,
+        "precio": 300,
+        "imagen": "img/spider-man.jpg"
+    }
+]
